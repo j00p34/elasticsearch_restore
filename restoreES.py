@@ -21,9 +21,11 @@ def openUrl(opener, request):
 
     # check. Substitute with appropriate HTTP code.
     if connection.code == 200:
+        global data
         data = connection.read()
         return True
     else:
+        global data
         data = connection.read()
         print data
         return False
@@ -47,6 +49,7 @@ if (openUrl(opener, request3)):
     with open('/var/tmp/ESrestoreStatus', 'w') as f:
         f.write(data)
 else:
+    print data
     with open('/var/log/elasticsearch/restore.log', 'w') as f:
         f.write(data)
 
