@@ -49,5 +49,5 @@ if (openUrl(opener, request3)):
 else:
     print data
     with open('/var/log/elasticsearch/restore.log', 'a') as f:
-        f.write(data)
+        f.write(data + "\n")
 
