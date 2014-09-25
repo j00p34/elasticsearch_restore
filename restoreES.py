@@ -50,3 +50,4 @@ else:
     with open('/var/log/elasticsearch/restore.log', 'a') as f:
         f.write(data + "\n")
 
+
