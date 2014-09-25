@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 __author__ = 'zadelhoff'
 
 import urllib2
@@ -18,6 +20,9 @@ def openUrl(opener, request):
     # check. Substitute with appropriate HTTP code.
     if connection.code == 200:
         data = connection.read()
+        with open('/var/tmp/ESrestoreStatus', 'w') as f:
+            f.write(data)
+            print f.closed()
         return data
     else:
         data = connection.read()
