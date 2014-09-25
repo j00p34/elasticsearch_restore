@@ -30,11 +30,11 @@ def openUrl(opener, request):
         # handle the error case. connection.read() will still contain data
          # if any was returned, but it probably won't be of any use
 
-request1 = urllib2.Request('http://localhost:9200/contentrepo-2014-09-02/_open', data=None)
+request1 = urllib2.Request('http://localhost:9200/contentrepo-2014-09-02/_close', data=None)
 # overload the get method function with a small anonymous function...
 request1.get_method = lambda: method
 
-request2 = urllib2.Request('http://localhost:9200/contentrepo-2014-09-23/_open', data=None)
+request2 = urllib2.Request('http://localhost:9200/contentrepo-2014-09-23/_close', data=None)
 request2.get_method = lambda: method
 
 request3 = urllib2.Request('http://localhost:9200/_snapshot/prod_s3_repository/backup/_restore', data=None)
