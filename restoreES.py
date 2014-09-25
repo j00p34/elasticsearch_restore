@@ -40,14 +40,13 @@ request2.get_method = lambda: method
 request3 = urllib2.Request('http://localhost:9200/_snapshot/prod_s3_repository/backup/_restore', data=None)
 request3.get_method = lambda: method
 
-print openUrl(opener, request1)
-print openUrl(opener, request2)
+openUrl(opener, request1)
+openUrl(opener, request2)
 
 if (openUrl(opener, request3)):
     with open('/var/tmp/ESrestoreStatus', 'w') as f:
         f.write(data)
 else:
-    print data
     with open('/var/log/elasticsearch/restore.log', 'a') as f:
         f.write(data + "\n")
 
