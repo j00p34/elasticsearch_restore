@@ -13,7 +13,7 @@ handler = urllib2.HTTPHandler()
 opener = urllib2.build_opener(handler)
 
 def openUrl(opener, request):
-
+    global data
     try:
         connection = opener.open(request)
     except urllib2.HTTPError,e:
@@ -21,11 +21,9 @@ def openUrl(opener, request):
 
     # check. Substitute with appropriate HTTP code.
     if connection.code == 200:
-        global data
         data = connection.read()
         return True
     else:
-        global data
         data = connection.read()
         print data
         return False
