@@ -25,6 +25,7 @@ def openUrl(opener, request):
         return True
     else:
         data = connection.read()
+        print data
         return False
         # handle the error case. connection.read() will still contain data
          # if any was returned, but it probably won't be of any use
