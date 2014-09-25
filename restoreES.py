@@ -48,6 +48,6 @@ if (openUrl(opener, request3)):
         f.write(data)
 else:
     print data
-    with open('/var/log/elasticsearch/restore.log', 'w') as f:
+    with open('/var/log/elasticsearch/restore.log', 'a') as f:
         f.write(data)
 
