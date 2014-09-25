@@ -4,6 +4,8 @@ __author__ = 'zadelhoff'
 
 import urllib2
 
+data = ""
+
 method = "POST"
 
 handler = urllib2.HTTPHandler()
@@ -20,10 +22,10 @@ def openUrl(opener, request):
     # check. Substitute with appropriate HTTP code.
     if connection.code == 200:
         data = connection.read()
-        return data
+        return True
     else:
         data = connection.read()
-        return "Error " + data
+        return False
         # handle the error case. connection.read() will still contain data
          # if any was returned, but it probably won't be of any use
 
@@ -40,6 +42,7 @@ request3.get_method = lambda: method
 print openUrl(opener, request1)
 print openUrl(opener, request2)
 
-with open('/var/tmp/ESrestoreStatus', 'w') as f:
-    f.write(openUrl(opener, request3))
+if (openUrl(opener, request3)):
+    with open('/var/tmp/ESrestoreStatus', 'w') as f:
+        f.write(data)
 
