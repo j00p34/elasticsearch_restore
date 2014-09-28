@@ -53,8 +53,8 @@ if (indexes[0]):
         with open('/var/tmp/ESrestoreStatus', 'w') as f:
             f.write(restoreResult[1])
     else:
-#        with open('/var/log/elasticsearch/restore.log', 'a') as f:
-        with open('/tmp/restore.log', 'a') as f:
+        with open('/var/log/elasticsearch/restore.log', 'a') as f:
+#        with open('/tmp/restore.log', 'a') as f:
             f.write(restoreResult[1] + "\n")
 else:
     with open('/var/log/elasticsearch/restore.log', 'a') as f:
