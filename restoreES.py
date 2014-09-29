@@ -4,6 +4,7 @@ __author__ = 'zadelhoff'
 
 import urllib2
 import json
+from datetime import datetime
 
 method = "POST"
 
@@ -55,7 +56,7 @@ if (indexes[0]):
     else:
         with open('/var/log/elasticsearch/restore.log', 'a') as f:
 #        with open('/tmp/restore.log', 'a') as f:
-            f.write(restoreResult[1] + "\n")
+            f.write(datetime.now() + restoreResult[1] + "\n")
 else:
     with open('/var/log/elasticsearch/restore.log', 'a') as f:
         f.write(indexes[1] + "\n")
