@@ -40,11 +40,22 @@ def close(index):
     request.get_method = lambda: method
     openUrl(opener, request)
 
+request0 = urllib2.Request('http://localhost:9200/_snapshot/prod_s3_repository/_all?pretty', data=None)
+
+snapnum = -1
+snapshots = openUrl(opener, request0)
+while (snapnum != 0):
+    if (json.loads(snapshots[1])['snapshots'][snapnum]['state'] == 'SUCCESS'):
+        snapname = json.loads(snapshots[1])['snapshots'][-1]['snapshot']
+        print 'success'
+        break
+    else: snapnum -= 1
+
 #get all indexes
-request0 = urllib2.Request('http://localhost:9200/_stats/indexes?pretty', data=None)
+request1 = urllib2.Request('http://localhost:9200/_stats/indexes?pretty', data=None)
 
 #close all indexes
-indexes = openUrl(opener, request0)
+indexes = openUrl(opener, request1)
 if (indexes[0]): 
     #indexes[0] = True if http request returns 200
     for k in json.loads(indexes[1])['indices']: 
@@ -52,7 +63,7 @@ if (indexes[0]):
         close(k)
 
     #Restore snapshot
-    restoreRequest = urllib2.Request('http://localhost:9200/_snapshot/prod_s3_repository/backup/_restore', data=None)
+    restoreRequest = urllib2.Request('http://localhost:9200/_snapshot/prod_s3_repository/' + snapname + '/_restore', data=None)
     restoreRequest.get_method = lambda: method
 
     restoreResult = openUrl(opener, restoreRequest)
